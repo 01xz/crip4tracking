@@ -26,7 +26,7 @@ done
 wait
 
 stop_time=`date +%s`
-echo "TIME: `expr $stop_time - $start_time`"
+echo "TIME: `expr $stop_time - $start_time` seconds"
 
 exec 6>&-
 echo "convert finish"
