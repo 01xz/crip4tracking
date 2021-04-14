@@ -2,23 +2,30 @@
 
 start_time=`date +%s`
 
-# define max thread numbers
-thread_num=12
+# max thread numbers
+THREAD_NUM=12
 
+# current path
+BASE_PATH=$(dirname $(readlink -f "$0"))
+
+# source folder
+SOURCE_FOLDER=$1
+
+# multi-thread related
 tmp_fifofile="/tmp/$$.fifo"
 mkfifo $tmp_fifofile
 exec 6<>$tmp_fifofile
 rm $tmp_fifofile
 
-for ((i=0;i<${thread_num};i++));do
+for ((i=0;i<${THREAD_NUM};i++));do
 	echo
 done >&6
 
-for image in ./*/*.jpg; do
+for img in ${BASE_PATH}/${SOURCE_FOLDER}/*.jpg; do
 	read -u6
 	{
-		convert "$image" "${image%.jpg}.png"
-		rm "$image"
+		convert "$img" "${img%.jpg}.png"
+		rm "$img"
 		echo >&6
 	} &
 done
@@ -29,4 +36,4 @@ stop_time=`date +%s`
 echo "TIME: `expr $stop_time - $start_time`s"
 
 exec 6>&-
-echo "Conversion completed!"
+echo "Conversion of ${SOURCE_FOLDER} to PNG format complete!"
