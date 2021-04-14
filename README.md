@@ -6,7 +6,13 @@ This repository contains:
 1. [Shell scripts](batch_test/) for batch image conversion using multiple threads.
 
 ## Table of Contents
-
+- [Background](#background)
+- [Install](#install)
+- [Usage](#usage)
+- [Related Efforts](#related-efforts)
+- [Maintainers](#maintainers)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Background
 
