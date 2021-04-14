@@ -2,13 +2,13 @@
 
 start_time=`date +%s`
 
+# define max thread numbers
+thread_num=12
+
 tmp_fifofile="/tmp/$$.fifo"
 mkfifo $tmp_fifofile
 exec 6<>$tmp_fifofile
 rm $tmp_fifofile
-
-# define max thread numbers
-thread_num=12
 
 for ((i=0;i<${thread_num};i++));do
 	echo
@@ -26,7 +26,7 @@ done
 wait
 
 stop_time=`date +%s`
-echo "TIME: `expr $stop_time - $start_time` seconds"
+echo "TIME: `expr $stop_time - $start_time`s"
 
 exec 6>&-
-echo "convert finish"
+echo "Conversion completed!"
