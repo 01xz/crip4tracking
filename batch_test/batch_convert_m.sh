@@ -3,10 +3,7 @@
 start_time=`date +%s`
 
 # max thread numbers
-THREAD_NUM=12
-
-# current path
-BASE_PATH=$(dirname $(readlink -f "$0"))
+THREAD_NUM=32
 
 # source folder
 SOURCE_FOLDER=$1
@@ -21,14 +18,29 @@ for ((i=0;i<${THREAD_NUM};i++));do
 	echo
 done >&6
 
-for img in ${BASE_PATH}/${SOURCE_FOLDER}/*.jpg; do
-	read -u6
-	{
-		convert "$img" "${img%.jpg}.png"
-		rm "$img"
-		echo >&6
-	} &
-done
+# read folder
+function read_dir() {
+    for file in `ls $1`; do
+        if [ -d "$1/$file" ]; then
+            read_dir "$1/$file"
+        else
+            if [ "${file#*.}"x = "jpg"x ]; then
+	            read -u6
+	            {
+	            	convert "$1/$file" "$1/${file%.jpg}.png"
+	            	rm "$1/$file"
+	            	echo >&6
+	            } &
+            elif [ "${file#*.}"x = "png"x ]; then
+                echo "WARNING: $1/$file is already in PNG format!"
+            else
+                echo "ERROR: JPG image NOT FOUND!"
+            fi
+        fi
+    done
+} 
+
+read_dir $SOURCE_FOLDER
 
 wait
 
@@ -37,3 +49,4 @@ echo "TIME: `expr $stop_time - $start_time`s"
 
 exec 6>&-
 echo "Conversion of ${SOURCE_FOLDER} to PNG format complete!"
+

@@ -3,7 +3,7 @@
 start_time=`date +%s`
 
 # max thread numbers
-THREAD_NUM=12
+THREAD_NUM=32
 
 # current path
 BASE_PATH=$(dirname $(readlink -f "$0"))
@@ -24,15 +24,15 @@ SOURCE_FOLDER=$1
 VERSION=$2
 
 # if folder 'output' doesn't exist, create it
-if [ ! -d "output" ]; then
-	mkdir output
+if [ ! -d "$BASE_PATH/output" ]; then
+	mkdir "$BASE_PATH/output"
 fi
 
 # if source folder doesn't exist, create it, otherwise, empty it
-if [ ! -d "output/${SOURCE_FOLDER}" ]; then
-	mkdir -p output/${SOURCE_FOLDER}
+if [ ! -d "$BASE_PATH/output/$SOURCE_FOLDER" ]; then
+	mkdir -p "$BASE_PATH/output/$SOURCE_FOLDER"
 else
-	rm -rf output/${SOURCE_FOLDER}/*
+	rm -rf "$BASE_PATH/output/$SOURCE_FOLDER/*"
 fi
 
 # build Pipeline.o from source file
@@ -50,13 +50,27 @@ for ((i=0;i<${THREAD_NUM};i++));do
 	echo
 done >&6
 
-for img in ${BASE_PATH}/${SOURCE_FOLDER}/*.png; do
-	read -u6
-	{
-		python ${CLI_PATH} --build False --infile ${img} --outfile "${BASE_PATH}/output/${SOURCE_FOLDER}/${img##*/}" --version ${VERSION}
-		echo >&6
-	} &
-done
+# read folder
+function read_dir() {
+    for file in `ls $1`; do
+        if [ -d "$1/$file" ]; then
+            mkdir -p "$BASE_PATH/output/$1/$file"
+            read_dir "$1/$file"
+        else
+            if [ "${file#*.}"x = "png"x ]; then
+	            read -u6
+	            {
+		            python $CLI_PATH --build False --infile "$BASE_PATH/$1/$file" --outfile "$BASE_PATH/output/$1/$file" --version $VERSION
+	            	echo >&6
+	            } &
+            else
+                echo "ERROR: PNG image NOT FOUND!"
+            fi
+        fi
+    done
+} 
+
+read_dir $SOURCE_FOLDER
 
 wait
 
@@ -65,5 +79,5 @@ stop_time=`date +%s`
 echo "TIME: `expr $stop_time - $start_time`s"
 
 exec 6>&-
-echo "Conversion of ${SOURCE_FOLDER} under version${VERSION} complete!"
+echo "Conversion of $SOURCE_FOLDER under version$VERSION complete!"
 
