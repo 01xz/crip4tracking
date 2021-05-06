@@ -1,1 +1,0 @@
-crop from 'VisDrone2018-SOT-test-dev\sequences\uav0000021_00000_s\img0000003.jpg'
