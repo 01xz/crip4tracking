@@ -8,8 +8,6 @@ cell_size = 6;
 nOrients = 9;
 
 %nDim = 3*nOrients+5-1;
-
-% uncomment below to show zero's color
 nDim = 3*nOrients+5;
 
 im_orig = imread('data/orig.jpg');
@@ -30,8 +28,6 @@ hog_image_v68  = fhog(single(im_v68),  cell_size, nOrients);
 % f_fhog_orig = hog_image_orig(:,:,1:end-1);
 % f_fhog_v13  = hog_image_v13(:,:,1:end-1);
 % f_fhog_v68  = hog_image_v68(:,:,1:end-1);
-
-% uncomment below to show zero's color
 f_fhog_orig = hog_image_orig;
 f_fhog_v13  = hog_image_v13;
 f_fhog_v68  = hog_image_v68;
