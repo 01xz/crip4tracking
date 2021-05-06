@@ -30,19 +30,33 @@ f_fhog_v68  = hog_image_v68(:,:,1:end-1);
 
 figure(1)
 for k = 1:nDim
-    subplot(6,6,k);
+    subplot(4,8,k);
     imagesc(f_fhog_orig(:, :, k));
     title(['orig  ', num2str(k), ' layer']);
 end
 figure(2)
 for k = 1:nDim
-    subplot(6,6,k);
+    subplot(4,8,k);
     imagesc(f_fhog_v13(:, :, k));
     title(['v13  ', num2str(k), ' layer']);
 end
 figure(3)
 for k = 1:nDim
-    subplot(6,6,k);
+    subplot(4,8,k);
     imagesc(f_fhog_v68(:, :, k));
     title(['v68  ', num2str(k), ' layer']);
 end
+
+[feature_orig,vision_orig] = extractHOGFeatures(double(im_orig),'CellSize',[6 6]);
+[feature_v13,vision_v13]   = extractHOGFeatures(double(im_v13),'CellSize',[6 6]);
+[feature_v68,vision_v68]   = extractHOGFeatures(double(im_v68),'CellSize',[6 6]);
+
+figure(4)
+imshow(im_orig);hold on
+plot(vision_orig);
+figure(5)
+imshow(im_v13);hold on
+plot(vision_v13);
+figure(6)
+imshow(im_v68);hold on
+plot(vision_v68);
