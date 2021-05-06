@@ -3,7 +3,8 @@
 This repo mainly test the "Configurable & Reversible Imaging Pipeline" for object tracking algorithms.
 
 This repository contains:
-1. [Shell scripts](batch_test/) for batch image conversion using multiple threads.
+1. [Shell scripts](batch_convert/) for batch image conversion using multiple threads.
+2. [Feature extract](feature_extract/) for extracting features used in DCF trackers using MATLAB.
 
 ## Table of Contents
 - [Background](#background)
