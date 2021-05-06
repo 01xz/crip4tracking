@@ -1,2 +1,4 @@
 batch_convert/output
 batch_convert/datasets
+feature_extract/data
+feature_extract/fig
