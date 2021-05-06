@@ -1,0 +1,1 @@
+from 'VisDrone2018-SOT-test-dev/sequences/uav0000164_00000_s/img0000665.jpg'
