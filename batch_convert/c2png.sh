@@ -44,6 +44,7 @@ function read_dir() {
     	        } &
             else
                 echo "ERROR: $1/$file is not in JPG format!"
+                cp "$1/$file" "$OUTPUT_FOLDER/${1#*/}/$file"
             fi
         fi
     done
