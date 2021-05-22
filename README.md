@@ -1,6 +1,6 @@
 # crip4tracking
 
-This repo mainly test the "Configurable & Reversible Imaging Pipeline" for object tracking algorithms.
+This repo mainly tests the "Configurable & Reversible Imaging Pipeline" for object tracking algorithms.
 
 This repository contains:
 1. [Shell scripts](batch_convert/) for batch image conversion using multiple threads.
