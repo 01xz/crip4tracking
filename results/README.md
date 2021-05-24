@@ -11,3 +11,9 @@
 ![precision disable a single stage](./pre_dis.svg)
 
 ![AUC disable a single stage](./auc_dis.svg)
+
+## 3. Minimal ISP with demosaic and gamma compression stages
+
+![precision mini isp](./pre_mini.svg)
+
+![auc mini isp](./auc_mini.svg)
