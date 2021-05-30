@@ -4,7 +4,8 @@ This repo mainly tests the "Configurable & Reversible Imaging Pipeline" for obje
 
 This repository contains:
 1. [Shell scripts](batch_convert/) for batch image conversion using multiple threads.
-2. [Feature extract](feature_extract/) for extracting features used in DCF trackers using MATLAB.
+2. [Detailed experiment results](results/).
+3. [Feature extract](feature_extract/) for extracting features used in DCF trackers using MATLAB.
 
 ## Table of Contents
 - [Background](#background)
@@ -19,7 +20,7 @@ This repository contains:
 
 The "Configurable & Reversible Imaging Pipeline" was proposed in the paper ["Reconfiguring the Imaging Pipeline for Computer Vision"](https://capra.cs.cornell.edu/research/visionmode/) by Mark Buckler, Suren Jayasuriya, and Adrian Sampson. The paper shows that most traditional ISP stages are unnecessary when targeting computer vision, and only two stages had significant effects on vision accuracy: demosaicing and gamma compression. However, their work only evaluated on a limited range of CV tasks (mainly include CNN-based object classification and detection). This project is dedicated to investigate whether the ISP with only two stages proposed in the paper are compatible with complex CV tasks such as object tracking.
 
-The state-of-the-art object tracking algorithms are mainly divided into two groups: `Correlation Filter` based trackers and `Siamese Network` based trackers. And the Correlation Filter based trackers may use the `handcrafted feature` or `deep feature`. We will pick up some popular trackers among them for testing, e.g., ECO, Autotrack, etc. 
+The state-of-the-art object tracking algorithms are mainly divided into two groups: `Correlation Filter` based trackers and `Siamese Network` based trackers. And the Correlation Filter based trackers may use the `handcrafted feature` or `deep feature`. We will pick up some popular trackers among them for testing, e.g., CN, KCF, Staple, ECO_HC, Autotrack, etc. 
 
 ## Install
 

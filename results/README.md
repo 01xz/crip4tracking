@@ -17,3 +17,15 @@
 ![precision mini isp](./pre_mini.svg)
 
 ![auc mini isp](./auc_mini.svg)
+
+## 4. Demosaic v.s. Subsample
+
+![precision demos vs subs](./pre_demos_vs_subs.svg)
+
+![auc demos vs subs](./auc_demos_vs_subs.svg)
+
+## 5. Bit-numbers
+
+![precision bits](./pre_bits.svg)
+
+![auc bits](./auc_bits.svg)
